@@ -1,0 +1,47 @@
+<RegistrationScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Label:
+            text: 'Register'
+            font_size: 24
+            size_hint_y: None
+            height: '40dp'
+
+        TextInput:
+            id: first_name
+            hint_text: 'First Name'
+            multiline: False
+
+        TextInput:
+            id: last_name
+            hint_text: 'Last Name'
+            multiline: False
+
+        TextInput:
+            id: email
+            hint_text: 'Email'
+            multiline: False
+
+        TextInput:
+            id: mobile
+            hint_text: 'Mobile'
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: 'Password'
+            multiline: False
+            password: True
+
+        TextInput:
+            id: confirm_password
+            hint_text: 'Confirm Password'
+            multiline: False
+            password: True
+
+        Button:
+            text: 'Register'
+            on_press: root.register_user()

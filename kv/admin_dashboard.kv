@@ -1,0 +1,19 @@
+<AdminDashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Label:
+            text: "Admin Dashboard"
+            font_size: 24
+
+        Button:
+            text: "Manage Subscriptions"
+            on_press: 
+                root.manager.current = 'subscription'
+
+        Button:
+            text: "Logout"
+            on_press: 
+                root.manager.current = 'login'

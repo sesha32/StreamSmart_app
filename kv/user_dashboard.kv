@@ -1,0 +1,19 @@
+<UserDashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Label:
+            text: "User Dashboard"
+            font_size: 24
+
+        Button:
+            text: "View Subscriptions"
+            on_press: 
+                root.manager.current = 'subscription'
+
+        Button:
+            text: "Logout"
+            on_press: 
+                root.manager.current = 'login'
