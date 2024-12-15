@@ -1,4 +1,4 @@
-<RegistrationScreen>:
+<AdminScreen>:
     BoxLayout:
         orientation: 'vertical'
         padding: [40, 60, 40, 40]  # [left, top, right, bottom]
@@ -34,7 +34,7 @@
                     radius: [20, 20, 20, 20]  # Rounded corners
 
             Label:
-                text: 'Register'
+                text: 'Admin Login'
                 font_size: '32sp'
                 bold: True
                 color: 1, 1, 1, 1  # White text
@@ -42,7 +42,7 @@
                 height: '50dp'
 
             Label:
-                text: 'Create your account'
+                text: 'Enter your admin credentials'
                 font_size: '16sp'
                 color: 0.7, 0.7, 0.7, 1  # Grayish white
                 size_hint_y: None
@@ -50,55 +50,19 @@
 
             # Input Fields
             TextInput:
-                id: first_name
-                hint_text: 'First Name'
+                id: admin_username
+                hint_text: 'Admin Username'
                 multiline: False
                 font_size: '16sp'
                 background_color: 0.1, 0.1, 0.1, 1  # Darker input background
                 foreground_color: 1, 1, 1, 1  # White text
                 cursor_color: 1, 1, 1, 1
                 size_hint: None, None
-                size: 280, 50  # Slightly narrower width
-                pos_hint: {"center_x": 0.5}
-
-            TextInput:
-                id: last_name
-                hint_text: 'Last Name'
-                multiline: False
-                font_size: '16sp'
-                background_color: 0.1, 0.1, 0.1, 1
-                foreground_color: 1, 1, 1, 1
-                cursor_color: 1, 1, 1, 1
-                size_hint: None, None
                 size: 280, 50
                 pos_hint: {"center_x": 0.5}
 
             TextInput:
-                id: email
-                hint_text: 'Email'
-                multiline: False
-                font_size: '16sp'
-                background_color: 0.1, 0.1, 0.1, 1
-                foreground_color: 1, 1, 1, 1
-                cursor_color: 1, 1, 1, 1
-                size_hint: None, None
-                size: 280, 50
-                pos_hint: {"center_x": 0.5}
-
-            TextInput:
-                id: mobile
-                hint_text: 'Mobile'
-                multiline: False
-                font_size: '16sp'
-                background_color: 0.1, 0.1, 0.1, 1
-                foreground_color: 1, 1, 1, 1
-                cursor_color: 1, 1, 1, 1
-                size_hint: None, None
-                size: 280, 50
-                pos_hint: {"center_x": 0.5}
-
-            TextInput:
-                id: password
+                id: admin_password
                 hint_text: 'Password'
                 multiline: False
                 password: True
@@ -110,22 +74,9 @@
                 size: 280, 50
                 pos_hint: {"center_x": 0.5}
 
-            TextInput:
-                id: confirm_password
-                hint_text: 'Confirm Password'
-                multiline: False
-                password: True
-                font_size: '16sp'
-                background_color: 0.1, 0.1, 0.1, 1
-                foreground_color: 1, 1, 1, 1
-                cursor_color: 1, 1, 1, 1
-                size_hint: None, None
-                size: 280, 50
-                pos_hint: {"center_x": 0.5}
-
-            # Register Button
+            # Login Button
             Button:
-                text: 'Register'
+                text: 'Login'
                 font_size: '18sp'
                 bold: True
                 background_normal: ''
@@ -134,10 +85,10 @@
                 size_hint: None, None
                 size: 280, 50
                 pos_hint: {"center_x": 0.5}
-                on_press: root.register_user()
+                on_press: root.admin_login()
 
             Label:
-                text: 'Already have an account? Login here.'
+                text: 'Forgot your password?'
                 font_size: '14sp'
                 color: 0.7, 0.7, 0.7, 1
                 size_hint_y: None
