@@ -1,0 +1,34 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Label:
+            text: "Welcome to StreamSmart"
+            font_size: 24
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: username
+            hint_text: "Enter Email"
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Enter Password"
+            password: True
+            multiline: False
+
+        Button:
+            text: "Login"
+            size_hint_y: None
+            height: 50
+            on_press: root.validate_user()
+
+        Button:
+            text: "Register"
+            size_hint_y: None
+            height: 50
+            on_press: root.manager.current = 'registration'
