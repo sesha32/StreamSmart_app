@@ -1,34 +1,74 @@
 <LoginScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 20
-        spacing: 10
+    FloatLayout:
+        # Background Image with Dark Transparent Overlay
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # Default white background
+            Rectangle:
+                source: 'assets/landingbg.jpg'  # Path to background image
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: 0, 0, 0, 0.6  # Semi-transparent black overlay
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
-        Label:
-            text: "Welcome to StreamSmart"
-            font_size: 24
-            size_hint_y: None
-            height: 50
+        # Login Box Positioned Centrally
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 20
+            size_hint: (0.4, 0.45)  # Adjust box size (width, height)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center alignment
+            padding: [30, 40]
 
-        TextInput:
-            id: username
-            hint_text: "Enter Email"
-            multiline: False
+            Label:
+                text: "Login"
+                font_size: 32
+                bold: True
+                color: (1, 1, 1, 1)  # White text
+                halign: 'center'
+                size_hint_y: None
+                height: 50
 
-        TextInput:
-            id: password
-            hint_text: "Enter Password"
-            password: True
-            multiline: False
+            # Email Input
+            TextInput:
+                id: username
+                hint_text: 'Email'
+                size_hint_y: None
+                height: 50
+                font_size: 18
+                background_normal: ''
+                background_color: (1, 1, 1, 0.8)  # Light background
 
-        Button:
-            text: "Login"
-            size_hint_y: None
-            height: 50
-            on_press: root.validate_user()
+            # Password Input
+            TextInput:
+                id: password
+                hint_text: 'Password'
+                password: True
+                size_hint_y: None
+                height: 50
+                font_size: 18
+                background_normal: ''
+                background_color: (1, 1, 1, 0.8)  # Light background
 
-        Button:
-            text: "Register"
-            size_hint_y: None
-            height: 50
-            on_press: root.manager.current = 'registration'
+            # Login Button
+            Button:
+                text: "Login"
+                size_hint_y: None
+                height: 50
+                font_size: 18
+                background_color: (1, 0, 0, 1)  # Red button color
+                color: (1, 1, 1, 1)  # White text
+                on_press: root.validate_user()
+
+            # Forgot Password Hyperlink
+            Label:
+                text: "[ref=forgot_password]Forgot Password?[/ref]"
+                markup: True
+                font_size: 16
+                color: (1, 1, 1, 1)  # White clickable text
+                size_hint_y: None
+                height: 30
+                halign: 'center'
+                on_ref_press: app.forgot_password()  # Calls a method in the App class
