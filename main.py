@@ -5,6 +5,7 @@ from login import LoginScreen
 from registration import RegistrationScreen
 from user_dashboard import UserDashboardScreen
 from admin_dashboard import AdminDashboardScreen
+from image_button import ImageButton
 
 
 class StreamSmartScreenManager(ScreenManager):

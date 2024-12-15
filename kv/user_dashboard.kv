@@ -4,16 +4,98 @@
         padding: 20
         spacing: 10
 
-        Label:
-            text: "User Dashboard"
-            font_size: 24
+        # Title and Caption
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.2
 
-        Button:
-            text: "View Subscriptions"
-            on_press: 
-                root.manager.current = 'subscription'
+            Label:
+                text: "StreamSmart"
+                font_size: 48
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+                size_hint_y: 0.6
 
+            Label:
+                text: "Your Destination for Affordable Subscriptions"
+                font_size: 20
+                halign: 'center'
+                valign: 'middle'
+                size_hint_y: 0.4
+
+        # Navigation Bar
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.1
+            spacing: 20
+            padding: 10
+
+            Button:
+                text: "Home"
+                on_press: print("Home clicked")  # Add logic if needed
+
+            Button:
+                text: "About"
+                on_press: print("About clicked")  # Add logic if needed
+
+            Button:
+                text: "FAQs"
+                on_press: print("FAQs clicked")  # Add logic if needed
+
+            Button:
+                text: "Contact Us"
+                on_press: print("Contact Us clicked")  # Add logic if needed
+
+        # OTT Options with Image Buttons in a Grid
+        ScrollView:
+            size_hint_y: 0.6
+            BoxLayout:
+                orientation: 'vertical'
+                padding: 10
+                spacing: 10
+
+                # Using GridLayout for arranging images
+                GridLayout:
+                    cols: 2  # Two images per row
+                    padding: 10
+                    spacing: 20
+
+                    ImageButton:
+                        source: 'assets/netflix-logo.png'
+                        on_press: root.select_subscription('Netflix')
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+
+                    ImageButton:
+                        source: 'assets/prime-logo.png'
+                        on_press: root.select_subscription('Amazon Prime')
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+
+                    ImageButton:
+                        source: 'assets/hotstar-logo.png'
+                        on_press: root.select_subscription('Hotstar')
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+
+                    ImageButton:
+                        source: 'assets/spotify-logo.png'
+                        on_press: root.select_subscription('Spotify')
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+
+                    ImageButton:
+                        source: 'assets/youtube-logo.png'
+                        on_press: root.select_subscription('YouTube')
+                        size_hint: None, None
+                        size: dp(150), dp(150)
+
+        # Logout Button
         Button:
             text: "Logout"
-            on_press: 
+            size_hint_y: 0.1
+            on_press:
+                root.manager.get_screen('login').ids.username.text = ''
+                root.manager.get_screen('login').ids.password.text = ''
                 root.manager.current = 'login'
