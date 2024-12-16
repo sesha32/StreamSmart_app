@@ -5,7 +5,6 @@ from kivy.lang import Builder
 
 Builder.load_file('kv/login.kv')
 
-
 class LoginScreen(Screen):
     def validate_user(self):
         username = self.ids.username.text
@@ -30,4 +29,3 @@ class LoginScreen(Screen):
                 print("Invalid credentials!")
         else:
             print("User not found!")
-

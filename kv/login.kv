@@ -18,7 +18,7 @@
         BoxLayout:
             orientation: 'vertical'
             spacing: 20
-            size_hint: (0.4, 0.45)  # Adjust box size (width, height)
+            size_hint: (0.4, 0.5)  # Adjust box size (width, height)
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center alignment
             padding: [30, 40]
 
@@ -72,3 +72,13 @@
                 height: 30
                 halign: 'center'
                 on_ref_press: app.forgot_password()  # Calls a method in the App class
+
+            # Register Button
+            Button:
+                text: "Register"
+                size_hint_y: None
+                height: 50
+                font_size: 18
+                background_color: (1, 0, 0, 1)  # Red button color
+                color: (1, 1, 1, 1)  # White text
+                on_press: root.manager.current = 'registration'
