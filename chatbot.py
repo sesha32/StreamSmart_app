@@ -6,7 +6,8 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.app import App
 from kivy.core.window import Window
-
+from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import Color, RoundedRectangle
 
 class ChatBotScreen(BoxLayout):
     def __init__(self, **kwargs):
@@ -51,7 +52,27 @@ class ChatBotScreen(BoxLayout):
         self.present_main_menu()
 
     def bot_message(self, message):
-        self.display_message(message, "Bot", right_align=False)
+        """Displays bot messages with olive green background and rounded corners."""
+        message_container = BoxLayout(size_hint_y=None, spacing=10, padding=(5, 5))
+        with message_container.canvas.before:
+            Color(0.6, 0.8, 0.2, 1)  # Olive green background
+            RoundedRectangle(
+                pos=message_container.pos,
+                size=(self.width * 0.9, 60),
+                radius=[20]
+            )
+        message_label = Label(
+            text=f"[b]Bot:[/b] {message}",
+            markup=True,
+            size_hint_y=None,
+            halign="left",
+            valign="middle",
+            text_size=(self.width * 0.8, None),
+            color=(1, 1, 1, 1)  # White text color
+        )
+        message_label.bind(size=self._update_height)
+        message_container.add_widget(message_label)
+        self.chat_box.add_widget(message_container)
 
     def user_message(self, message):
         self.display_message(message, "User", right_align=True)
@@ -84,20 +105,32 @@ class ChatBotScreen(BoxLayout):
 
         self.chat_box.add_widget(message_container)
 
-    def display_link(self, text, callback):
-        """Displays clickable links (Buttons) as chat options aligned to the left."""
+    def display_green_box(self, text, callback):
+        """Displays blue-bordered buttons with white background and blue text."""
         button = Button(
             text=text,
             size_hint_y=None,
-            height=40,
-            background_color=(0, 0, 0, 0),
-            color=(0, 0.5, 1, 1),  # Blue link color
-            underline=True,
-            halign="left",
-            size_hint_x=1  # Ensure the button takes up the full width
+            height=50,
+            background_normal='',
+            background_color=(1, 1, 1, 1),  # White background
+            color=(0, 0.5, 1, 1),  # Blue text
+            font_size=14,
+            bold=True,
+            halign="center"
         )
+        with button.canvas.before:
+            Color(0, 0.5, 1, 1)  # Blue border color
+            RoundedRectangle(
+                pos=button.pos,
+                size=button.size,
+                radius=[20]
+            )
         button.bind(on_release=callback)
         self.chat_box.add_widget(button)
+
+    def display_blue_box(self, text, callback):
+        """Same as green box, used for sub-questions."""
+        self.display_green_box(text, callback)
 
     def _update_height(self, instance, *args):
         instance.text_size = (instance.width, None)
@@ -115,26 +148,26 @@ class ChatBotScreen(BoxLayout):
 
     def present_main_menu(self):
         self.bot_message("What would you like to know about our application?")
-        self.display_link("1. Related to Subscription Plan", lambda x: self.present_sub_questions("subscription plan"))
-        self.display_link("2. Related to OTT Platforms", lambda x: self.present_sub_questions("ott platforms"))
-        self.display_link("3. Related to Security", lambda x: self.present_sub_questions("security"))
-        self.display_link("4. Related to Legality Issues", lambda x: self.present_sub_questions("legality issues"))
+        self.display_green_box("Related to Subscription Plan", lambda x: self.present_sub_questions("subscription plan"))
+        self.display_green_box("Related to OTT Platforms", lambda x: self.present_sub_questions("ott platforms"))
+        self.display_green_box("Related to Security", lambda x: self.present_sub_questions("security"))
+        self.display_green_box("Related to Legality Issues", lambda x: self.present_sub_questions("legality issues"))
 
     def present_sub_questions(self, category):
         self.current_category = category
         self.user_message(f"Selected: {category.capitalize()}")
         if category == "subscription plan":
-            self.display_link("1. What plans do you offer?", lambda x: self.show_answer("What plans do you offer?", "We offer Basic, Standard, and Premium plans."))
-            self.display_link("2. How much does it cost?", lambda x: self.show_answer("How much does it cost?", "Our plans range from $5 to $20 per month."))
+            self.display_blue_box("What plans do you offer?", lambda x: self.show_answer("What plans do you offer?", "We offer Basic, Standard, and Premium plans."))
+            self.display_blue_box("How much does it cost?", lambda x: self.show_answer("How much does it cost?", "Our plans range from $5 to $20 per month."))
         elif category == "ott platforms":
-            self.display_link("1. What platforms are supported?", lambda x: self.show_answer("What platforms are supported?", "We support Netflix, Amazon Prime, Disney+, and more."))
-            self.display_link("2. How to link my account?", lambda x: self.show_answer("How to link my account?", "Go to Settings > Link Account > Follow the instructions."))
+            self.display_blue_box("What platforms are supported?", lambda x: self.show_answer("What platforms are supported?", "We support Netflix, Amazon Prime, Disney+, and more."))
+            self.display_blue_box("How to link my account?", lambda x: self.show_answer("How to link my account?", "Go to Settings > Link Account > Follow the instructions."))
         elif category == "security":
-            self.display_link("1. How secure is my data?", lambda x: self.show_answer("How secure is my data?", "We use 256-bit encryption to secure all data."))
-            self.display_link("2. What measures are in place to protect me?", lambda x: self.show_answer("What measures are in place to protect me?", "We implement multi-factor authentication and secure payments."))
+            self.display_blue_box("How secure is my data?", lambda x: self.show_answer("How secure is my data?", "We use 256-bit encryption to secure all data."))
+            self.display_blue_box("What measures are in place to protect me?", lambda x: self.show_answer("What measures are in place to protect me?", "We implement multi-factor authentication and secure payments."))
         elif category == "legality issues":
-            self.display_link("1. Is subscription sharing legal?", lambda x: self.show_answer("Is subscription sharing legal?", "Subscription sharing depends on the platform's terms of service."))
-            self.display_link("2. Are there any risks involved?", lambda x: self.show_answer("Are there any risks involved?", "Sharing accounts may lead to account suspension."))
+            self.display_blue_box("Is subscription sharing legal?", lambda x: self.show_answer("Is subscription sharing legal?", "Subscription sharing depends on the platform's terms of service."))
+            self.display_blue_box("Are there any risks involved?", lambda x: self.show_answer("Are there any risks involved?", "Sharing accounts may lead to account suspension."))
 
     def show_answer(self, question, answer):
         """Display the answer to a clicked question and ask for satisfaction."""
@@ -145,8 +178,8 @@ class ChatBotScreen(BoxLayout):
     def ask_satisfaction(self):
         """Ask if the user is satisfied with the answer."""
         self.bot_message("Are you satisfied with my answer?")
-        self.display_link("Yes", lambda x: self.collect_feedback())
-        self.display_link("No", lambda x: self.represent_questions())
+        self.display_green_box("Yes", lambda x: self.collect_feedback())
+        self.display_green_box("No", lambda x: self.represent_questions())
 
     def represent_questions(self):
         """Re-present the questions for the current category."""
