@@ -11,6 +11,10 @@ from kivy.core.window import Window
 from kivy.graphics import Color, Line
 
 from contact import ContactScreen
+from chatbot import ChatBotScreen
+from about import AboutScreen
+from faqs import FaqsScreen
+from support import SupportScreen
 
 # Store subscription counts
 subscription_counts = {
