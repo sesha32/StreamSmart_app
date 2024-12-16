@@ -9,17 +9,16 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.popup import Popup
 from kivy.core.window import Window
 from kivy.graphics import Color, Line
+from kivy.uix.scrollview import ScrollView
+
 from chatbot import ChatBotScreen
 from about import AboutScreen
 from faqs import FaqsScreen
-
-from kivy.uix.scrollview import ScrollView
-
 from support import SupportScreen
 
 
 # Dashboard Screen
-class DashboardScreen(Screen):
+class UserDashboardScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -49,7 +48,7 @@ class DashboardScreen(Screen):
                 size_hint=(None, 1),
                 width=100  # Fixed width for buttons
             )
-            # Navigation logic for Contact Us button
+            # Navigation logic for buttons
             if btn_text == "Contact Us":
                 button.bind(on_release=self.go_to_contact)
             elif btn_text == "Chatbot":
@@ -58,11 +57,9 @@ class DashboardScreen(Screen):
                 button.bind(on_release=self.go_to_about)
             elif btn_text == "FAQs":
                 button.bind(on_release=self.go_to_faqs)
-
             elif btn_text == "Support":
                 button.bind(on_release=self.go_to_support)
-            # Add a handler for About
-            # Open the chatbot
+
             nav_bar.add_widget(button)
 
         layout.add_widget(nav_bar)
@@ -93,7 +90,7 @@ class DashboardScreen(Screen):
 
         self.add_widget(layout)
 
-    # Method to switch to the Contact screen
+    # Methods for navigation
     def go_to_contact(self, instance):
         self.manager.current = "contact"
 
@@ -118,10 +115,6 @@ class DashboardScreen(Screen):
             size_hint=(0.8, 0.8)
         )
         chatbot_popup.open()
-
-
-    def open_platform_page(self, platform_name):
-        self.manager.current = platform_name.lower().replace(" ", "_")
 
 
 # Custom OTT Platform Button
@@ -161,7 +154,6 @@ class OTTButton(ButtonBehavior, BoxLayout):
         self.border.rectangle = (self.x, self.y, self.width, self.height)
 
 
-# OTT Platform Individual Screens
 # OTT Platform Individual Screens
 class OTTPlatformScreen(Screen):
     PLATFORM_PLANS = {
@@ -308,6 +300,8 @@ class OTTPlatformScreen(Screen):
 
     def go_back(self, *args):
         self.manager.current = 'dashboard'
+
+
 # Contact Screen (displaying contact info)
 class ContactScreen(Screen):
     def __init__(self, **kwargs):
@@ -348,17 +342,15 @@ class OTTApp(App):
         sm = ScreenManager()
 
         # Dashboard Screen
-        dashboard_screen = DashboardScreen(name="dashboard")
+        dashboard_screen = UserDashboardScreen(name="dashboard")
         sm.add_widget(dashboard_screen)
         # About Screen
         about_screen = AboutScreen(name="about")
         sm.add_widget(about_screen)
         faqs_screen = FaqsScreen(name="faqs")
         sm.add_widget(faqs_screen)
-        support_screen=SupportScreen(name="support")
+        support_screen = SupportScreen(name="support")
         sm.add_widget(support_screen)
-
-
 
         # Contact Screen
         contact_screen = ContactScreen(name="contact")

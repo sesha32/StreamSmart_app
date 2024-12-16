@@ -21,7 +21,7 @@ subscription_counts = {
 }
 
 # Dashboard Screen
-class DashboardScreen(Screen):
+class AdminDashboardScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

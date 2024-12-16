@@ -22,11 +22,12 @@ class LoginScreen(Screen):
             if bcrypt.checkpw(password.encode('utf-8'), stored_password):
                 print("Login successful!")
                 # Redirect based on user ID
-                if user_id in (1, 2):
-                    self.manager.current = 'admin_dashboard'
-                else:
-                    self.manager.current = 'user_dashboard'
+                if user_id in (1, 2):  # Admin IDs
+                    self.manager.current = "admindashboard"
+                else:  # Regular user
+                    self.manager.current = "userdashboard"
             else:
                 print("Invalid credentials!")
         else:
             print("User not found!")
+
