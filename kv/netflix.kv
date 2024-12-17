@@ -1,0 +1,151 @@
+<NetflixScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        # Title Section
+        Label:
+            text: "Netflix Subscription Plans"
+            font_size: '36sp'
+            bold: True
+            halign: 'center'
+            color: 1, 1, 1, 1  # White Text
+            size_hint_y: None
+            height: dp(60)
+
+        # Main Content: Side-by-Side Layout
+        GridLayout:
+            cols: 2
+            spacing: dp(20)
+            size_hint_y: None
+            height: dp(500)
+
+            # Original Netflix Plans (Left Side)
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1  # Dark Gray Background
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: "Original Netflix Plans"
+                    font_size: '24sp'
+                    bold: True
+                    color: 1, 0.2, 0.2, 1  # Bright Red Netflix Theme
+                    size_hint_y: None
+                    height: dp(40)
+
+                Label:
+                    text: "Premium Plan\\nMonthly Price: ₹649"
+                    font_size: '18sp'
+                    color: 1, 1, 1, 1  # White Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(70)
+
+                Label:
+                    text: "Features:\\n- Watch on any device (mobile, tablet, computer, TV)\\n- Ultra HD quality\\n- Four screens at a time"
+                    font_size: '16sp'
+                    color: 0.8, 0.8, 0.8, 1  # Light Gray Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(120)
+
+                Label:
+                    text: "Premium Plan\\nYearly Price: ₹7788"
+                    font_size: '18sp'
+                    color: 1, 1, 1, 1  # White Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(70)
+
+                Label:
+                    text: "Features:\\n- Watch on any device (mobile, tablet, computer, TV)\\n- Ultra HD quality\\n- Four screens at a time"
+                    font_size: '16sp'
+                    color: 0.8, 0.8, 0.8, 1  # Light Gray Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    height: dp(120)
+
+            # StreamSmart Plans (Right Side)
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: 0.15, 0.15, 0.2, 1  # Dark Blue Background
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: "StreamSmart Plans"
+                    font_size: '24sp'
+                    bold: True
+                    color: 0.3, 0.8, 1, 1  # Light Blue Accent
+                    size_hint_y: None
+                    height: dp(40)
+
+                Label:
+                    text: "Premium Plan\\nMonthly Price: ₹183"
+                    font_size: '18sp'
+                    color: 1, 1, 1, 1  # White Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(70)
+
+                Label:
+                    text: "Features:\\n- Watch on any device (mobile, tablet, computer, TV)\\n- Ultra HD quality\\n- One screen at a time"
+                    font_size: '16sp'
+                    color: 0.8, 0.8, 0.8, 1  # Light Gray Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(120)
+
+                Label:
+                    text: "Premium Plan\\nYearly Price: ₹1977"
+                    font_size: '18sp'
+                    color: 1, 1, 1, 1  # White Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: dp(70)
+
+                Label:
+                    text: "Features:\\n- Watch on any device (mobile, tablet, computer, TV)\\n- Ultra HD quality\\n- One screen at a time"
+                    font_size: '16sp'
+                    color: 0.8, 0.8, 0.8, 1  # Light Gray Text
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.width, None
+                    height: dp(120)
+
+                # Subscribe Button
+                Button:
+                    text: "Subscribe Now"
+                    font_size: '20sp'
+                    background_color: 0.1, 0.6, 0.6, 1  # Teal Button
+                    color: 1, 1, 1, 1  # White Text
+                    size_hint: None, None
+                    size: dp(200), dp(50)
+                    pos_hint: {'center_x': 0.5}
+                    on_press: root.show_plan_popup()

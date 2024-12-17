@@ -8,6 +8,8 @@ from contact import ContactScreen  # Adjust this import based on your file struc
 from about import AboutScreen
 from faqs import FaqsScreen
 from support import SupportScreen
+from subscriptions.netflix import NetflixScreen
+
 
 
 class StreamSmartApp(App):
@@ -22,6 +24,8 @@ class StreamSmartApp(App):
         sm.add_widget(FaqsScreen(name="faqs"))    # Add FaqsScreen
         sm.add_widget(SupportScreen(name="support"))  # Add SupportScreen
         sm.add_widget(ContactScreen(name='contact'))
+        sm.add_widget(UserDashboardScreen(name='user_dashboard_screen'))
+        sm.add_widget(NetflixScreen(name='netflix_screen'))
 
         return sm
     
