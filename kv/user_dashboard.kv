@@ -37,17 +37,17 @@
 
             Button:
                 text: "About"
-                on_press: print("About clicked")  # Add logic if needed
+                on_press: root.manager.current = 'about'  # Navigate to About screen
 
             Button:
                 text: "FAQs"
-                on_press: print("FAQs clicked")  # Add logic if needed
+                on_press: root.manager.current = 'faqs'  # Navigate to FAQ screen
 
             Button:
                 text: "Contact Us"
-                on_press: print("Contact Us clicked")  # Add logic if needed
+                on_press: root.manager.current = 'contact'  # Navigate to Contact screen
 
-        # OTT Options with Image Buttons in a Grid
+        # OTT Options with Image Buttons in a Grid (unchanged from your code)
         ScrollView:
             size_hint_y: 0.6
             BoxLayout:
@@ -55,14 +55,13 @@
                 padding: 10
                 spacing: 10
 
-                # Using GridLayout for arranging images
                 GridLayout:
                     cols: 2  # Two images per row
                     padding: 10
                     spacing: 20
 
                     ImageButton:
-                        source: 'assets/netflix-logo.png'
+                        source: 'assets/netflix.jpg'
                         on_press: root.open_subscription('Netflix')
                         size_hint: None, None
                         size: dp(150), dp(150)
