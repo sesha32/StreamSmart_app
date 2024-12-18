@@ -12,6 +12,7 @@ from subscriptions.netflix import NetflixScreen
 from subscriptions.amazon import AmazonScreen
 from subscriptions.hotstar import HotstarScreen
 from subscriptions.spotify import SpotifyScreen
+from forgot_password import ForgotPasswordScreen
 
 
 
@@ -32,7 +33,13 @@ class StreamSmartApp(App):
         sm.add_widget(AmazonScreen(name='amazon_screen'))
         sm.add_widget(HotstarScreen(name='hotstar_screen'))
         sm.add_widget(SpotifyScreen(name='spotify_screen'))
+        sm.add_widget(ForgotPasswordScreen(name='forgot_password'))
         return sm
+    
+    def forgot_password(self):
+        # Switch to the forgot_password screen
+        self.root.current = 'forgot_password'
+
     
 if __name__ == '__main__':
     StreamSmartApp().run()
