@@ -1,8 +1,12 @@
+from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
-from kivy.uix.screenmanager import Screen
+from kivy.lang import Builder
+from userdashboard import UserDashboardScreen
 
+# Define AboutScreen class
 class AboutScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -11,7 +15,7 @@ class AboutScreen(Screen):
 
         # About Information
         about_label = Label(
-            text=(
+            text=( 
                 "[b]About Us[/b]\n\n"
                 "Access to premium streaming services has become increasingly expensive, "
                 "making it difficult for individuals or small households to justify the cost, "
@@ -51,4 +55,56 @@ class AboutScreen(Screen):
         self.add_widget(layout)
 
     def go_back(self, *args):
-        self.manager.current = 'dashboard'
+        """Navigate back to the Dashboard screen."""
+        self.manager.current = 'userdashboard'  # Switch to dashboard screen
+
+# Define DashboardScreen class
+class DashboardScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        layout = BoxLayout(orientation='vertical', spacing=10, padding=10)
+        
+        # Dashboard Information
+        dashboard_label = Label(
+            text="Welcome to the Dashboard!",
+            font_size='24sp',
+            halign='center',
+            color=(1, 1, 1, 1)
+        )
+        layout.add_widget(dashboard_label)
+
+        # Go to About Screen Button
+        go_to_about_button = Button(
+            text="Go to About Screen",
+            size_hint=(None, None),
+            size=(200, 50),
+            pos_hint={"center_x": 0.5},
+            background_color=(0.19, 0.87, 0.39, 1)
+        )
+        go_to_about_button.bind(on_release=self.go_to_about)
+        layout.add_widget(go_to_about_button)
+
+        self.add_widget(layout)
+
+    def go_to_about(self, *args):
+        """Navigate to the About screen."""
+        self.manager.current = 'about'  # Switch to about screen
+
+# Main App Class
+class MyApp(App):
+    def build(self):
+        # Create a ScreenManager
+        sm = ScreenManager()
+
+        # Add AboutScreen and DashboardScreen to the ScreenManager
+        sm.add_widget(UserDashboardScreen(name='userdashboard'))
+        sm.add_widget(AboutScreen(name='about'))
+
+        # Set the initial screen to 'dashboard'
+        sm.current = 'dashboard'
+
+        return sm
+
+# Run the App
+if __name__ == '__main__':
+    MyApp().run()
