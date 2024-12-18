@@ -9,6 +9,9 @@ from about import AboutScreen
 from faqs import FaqsScreen
 from support import SupportScreen
 from subscriptions.netflix import NetflixScreen
+from subscriptions.amazon import AmazonScreen
+from subscriptions.hotstar import HotstarScreen
+from subscriptions.spotify import SpotifyScreen
 
 
 
@@ -26,7 +29,9 @@ class StreamSmartApp(App):
         sm.add_widget(ContactScreen(name='contact'))
         sm.add_widget(UserDashboardScreen(name='user_dashboard_screen'))
         sm.add_widget(NetflixScreen(name='netflix_screen'))
-
+        sm.add_widget(AmazonScreen(name='amazon_screen'))
+        sm.add_widget(HotstarScreen(name='hotstar_screen'))
+        sm.add_widget(SpotifyScreen(name='spotify_screen'))
         return sm
     
 if __name__ == '__main__':

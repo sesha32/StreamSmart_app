@@ -26,6 +26,39 @@ def initialize_database():
                             mobile TEXT,
                             plan TEXT,
                             applied_date TEXT)''')
+        
+        # Create the amazon_subscriptions table if it doesn't exist
+        cursor.execute('''CREATE TABLE IF NOT EXISTS amazon_subscriptions (
+                            application_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id INTEGER,
+                            first_name TEXT,
+                            last_name TEXT,
+                            email TEXT,
+                            mobile TEXT,
+                            plan TEXT,
+                            applied_date TEXT)''')
+        
+        # Create the hotstar_subscriptions table if it doesn't exist
+        cursor.execute('''CREATE TABLE IF NOT EXISTS hotstar_subscriptions (
+                            application_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id INTEGER,
+                            first_name TEXT,
+                            last_name TEXT,
+                            email TEXT,
+                            mobile TEXT,
+                            plan TEXT,
+                            applied_date TEXT)''')
+        
+        # Create the spotify_subscriptions table if it doesn't exist
+        cursor.execute('''CREATE TABLE IF NOT EXISTS spotify_subscriptions (
+                            application_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id INTEGER,
+                            first_name TEXT,
+                            last_name TEXT,
+                            email TEXT,
+                            mobile TEXT,
+                            plan TEXT,
+                            applied_date TEXT)''')
 
         # Commit changes and close the connection
         conn.commit()

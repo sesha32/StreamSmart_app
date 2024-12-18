@@ -14,9 +14,9 @@ from database import initialize_database  # Import the database initialization f
 # Initialize the database when the app starts
 initialize_database()  # Ensure the database and tables are created before the app runs
 
-Builder.load_file('kv/netflix.kv')
+Builder.load_file('kv/spotify.kv')
 
-class NetflixScreen(Screen):
+class SpotifyScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # Placeholder for user data, this should be fetched from your user management system
@@ -116,7 +116,7 @@ class NetflixScreen(Screen):
                 cursor = conn.cursor()
 
                 # Insert subscription data into the netflix_subscriptions table
-                cursor.execute('''INSERT INTO netflix_subscriptions (id, first_name, last_name, email, mobile, plan, applied_date)
+                cursor.execute('''INSERT INTO spotify_subscriptions (id, first_name, last_name, email, mobile, plan, applied_date)
                                   VALUES (?, ?, ?, ?, ?, ?, ?)''',
                                (user_id, first_name, last_name, email, mobile, plan, applied_date))
 
@@ -144,7 +144,7 @@ class NetflixScreen(Screen):
         # Success message content
         success_message = (
             f"Subscription Successful!\n\n"
-            f"Thank you, {first_name}, for subscribing to Netflix on our website.\n\n"
+            f"Thank you, {first_name}, for subscribing to Spotify on our website.\n\n"
             f"This {plan} requires a team to be formed. We'll notify you once we find a team.\n\n"
             f"We will contact you through your mobile number ({mobile}).\n\n"
             f"Enjoy all the features of the Premium plan!"

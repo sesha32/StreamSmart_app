@@ -33,7 +33,7 @@ class UserDashboardScreen(Screen):
             if platform == 'Netflix':
                 self.manager.current = 'netflix_screen'
             elif platform == 'Amazon Prime':
-                self.manager.current = 'amazon_prime_screen'
+                self.manager.current = 'amazon_screen'
             elif platform == 'Hotstar':
                 self.manager.current = 'hotstar_screen'
             elif platform == 'Spotify':
