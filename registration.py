@@ -1,6 +1,6 @@
+from kivy.uix.screenmanager import Screen
 import sqlite3
 import bcrypt
-from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 
 Builder.load_file('kv/registration.kv')
@@ -32,3 +32,6 @@ class RegistrationScreen(Screen):
             self.manager.current = 'login'
         except sqlite3.IntegrityError:
             print("This email is already registered!")
+
+    def redirect_to_login(self):
+        self.manager.current = 'login'
