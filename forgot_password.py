@@ -1,10 +1,12 @@
+import os
 import sqlite3
 import bcrypt
 import random
 import smtplib
+import re  # Ensure the re module is imported
+from email.mime.text import MIMEText
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
-from email.mime.text import MIMEText
 
 Builder.load_file('kv/forgot_password.kv')
 
@@ -14,34 +16,40 @@ class ForgotPasswordScreen(Screen):
 
     def send_otp_email(self, email):
         """Generate a random OTP and send it to the user's email."""
-        otp = str(random.randint(100000, 999999))
-        
-        # Send OTP to the user's email
+        self.otp = str(random.randint(100000, 999999))
         try:
-            msg = MIMEText(f"Your OTP is {otp}")
+            # Create the email message
+            msg = MIMEText(f"Your OTP is {self.otp}")
             msg['Subject'] = 'Password Reset OTP'
-            msg['From'] = 'your_email@example.com'  # Replace with your email
+            msg['From'] = 'saisriramyasetti@gmail.com'  # Replace with your email
             msg['To'] = email
 
-            # Setup the SMTP server
-            with smtplib.SMTP('smtp.example.com', 587) as server:  # Use your SMTP server
-                server.starttls()
-                server.login('your_email@example.com', 'your_password')  # Use your email credentials
-                server.sendmail('your_email@example.com', email, msg.as_string())
-                
+            # Connect to the SMTP server
+            with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                server.starttls()  # Secure the connection
+                # Use the app-specific password instead of your Gmail password
+                server.login('saisriramyasetti@gmail.com', 'abub qswf ascy edev')
+                server.sendmail('saisriramyasetti@gmail.com', email, msg.as_string())
+            
             print("OTP sent to email!")
-            return otp  # Return OTP to verify later
+            return self.otp  # Return OTP for verification
+
         except Exception as e:
             print(f"Error sending OTP email: {e}")
             return None
+
+    def validate_email(self, email):
+        """Validate the email format using regex."""
+        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return re.match(email_regex, email) is not None
 
     def verify_email(self):
         """Verify the entered email and send the OTP to it."""
         email = self.ids.email.text.strip()
 
-        # Check if email is provided
-        if not email:
-            print("Please enter an email address.")
+        # Check if email is provided and valid
+        if not email or not self.validate_email(email):
+            print("Please enter a valid email address.")
             return
 
         # Send OTP to the email
