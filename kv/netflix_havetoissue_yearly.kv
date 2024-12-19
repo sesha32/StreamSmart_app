@@ -1,0 +1,110 @@
+<NetflixHavetoissueYearly>:
+    subscriptions_container: subscriptions_container
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        # Back Button
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            padding: dp(10)
+            Button:
+                text: "Back"
+                size_hint: None, None
+                size: dp(100), dp(40)
+                background_color: (1, 0, 0, 1)  # Red color
+                color: (1, 1, 1, 1)  # White text
+                on_press: root.go_back()
+
+        Label:
+            text: "Netflix Subscriptions - Yearly Plan"
+            font_size: 28
+            bold: True
+            size_hint_y: None
+            height: 50
+            color: (1, 0, 0, 1)
+
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [10, 10]
+                spacing: 10
+                id: subscriptions_container  # This links to subscriptions_container
+
+<TeamBox>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    padding: [10, 5]
+    spacing: 10
+
+    Label:
+        id: team_title
+        text: "Team Title"
+        font_size: 20
+        bold: True
+        size_hint_y: None
+        height: 40
+
+    GridLayout:
+        id: details_grid
+        cols: 7
+        size_hint_y: None
+        height: self.minimum_height
+        spacing: 5
+        padding: [5, 5]
+        row_default_height: 30
+        row_force_default: True
+
+        Label:
+            text: "Application ID"
+            bold: True
+            size_hint_x: None
+            width: 100
+
+        Label:
+            text: "ID"
+            bold: True
+            size_hint_x: None
+            width: 60
+
+        Label:
+            text: "First Name"
+            bold: True
+            size_hint_x: None
+            width: 150
+
+        Label:
+            text: "Email"
+            bold: True
+            size_hint_x: None
+            width: 200
+
+        Label:
+            text: "Mobile"
+            bold: True
+            size_hint_x: None
+            width: 120
+
+        Label:
+            text: "Applied Date"
+            bold: True
+            size_hint_x: None
+            width: 150
+
+        # Label for delete icon
+        Label:
+            text: "Delete"
+            bold: True
+            size_hint_x: None
+            width: 60
+
+        # Delete icon placeholder
+        DeleteButton:
+            application_id: "ID"
+            # Replace with actual application_id

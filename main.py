@@ -13,7 +13,10 @@ from subscriptions.amazon import AmazonScreen
 from subscriptions.hotstar import HotstarScreen
 from subscriptions.spotify import SpotifyScreen
 from forgot_password import ForgotPasswordScreen
-
+from admin_subscriptions.admin_netflix import AdminNetflixScreen
+from admin_subscriptions.netflix_havetoissue_monthly import NetflixHavetoissueMonthly
+from admin_subscriptions.netflix_havetoissue_yearly import NetflixHavetoissueYearly
+from admin_subscriptions.admin_amazon import AdminAmazonScreen
 
 
 class StreamSmartApp(App):
@@ -28,12 +31,15 @@ class StreamSmartApp(App):
         sm.add_widget(FaqsScreen(name="faqs"))    # Add FaqsScreen
         sm.add_widget(SupportScreen(name="support"))  # Add SupportScreen
         sm.add_widget(ContactScreen(name='contact'))
-        sm.add_widget(UserDashboardScreen(name='user_dashboard_screen'))
         sm.add_widget(NetflixScreen(name='netflix_screen'))
         sm.add_widget(AmazonScreen(name='amazon_screen'))
         sm.add_widget(HotstarScreen(name='hotstar_screen'))
         sm.add_widget(SpotifyScreen(name='spotify_screen'))
         sm.add_widget(ForgotPasswordScreen(name='forgot_password'))
+        sm.add_widget(AdminNetflixScreen(name='admin_netflix_screen'))
+        sm.add_widget(NetflixHavetoissueMonthly(name='netflix_havetoissue_monthly'))
+        sm.add_widget(NetflixHavetoissueYearly(name='netflix_havetoissue_yearly'))
+        sm.add_widget(AdminAmazonScreen(name='admin_amazon_screen'))
         return sm
     
     def forgot_password(self):
