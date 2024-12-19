@@ -12,11 +12,22 @@ from subscriptions.netflix import NetflixScreen
 from subscriptions.amazon import AmazonScreen
 from subscriptions.hotstar import HotstarScreen
 from subscriptions.spotify import SpotifyScreen
+from subscriptions.youtube import YoutubeScreen
 from forgot_password import ForgotPasswordScreen
 from admin_subscriptions.admin_netflix import AdminNetflixScreen
 from admin_subscriptions.netflix_havetoissue_monthly import NetflixHavetoissueMonthly
 from admin_subscriptions.netflix_havetoissue_yearly import NetflixHavetoissueYearly
 from admin_subscriptions.admin_amazon import AdminAmazonScreen
+from admin_subscriptions.amazon_havetoissue_monthly import AmazonHavetoissueMonthly
+from admin_subscriptions.amazon_havetoissue_yearly import AmazonHavetoissueYearly
+from admin_subscriptions.admin_hotstar import AdminHotstarScreen
+from admin_subscriptions.hotstar_havetoissue_monthly import HotstarHavetoissueMonthly
+from admin_subscriptions.hotstar_havetoissue_yearly import HotstarHavetoissueYearly
+from admin_subscriptions.admin_spotify import AdminSpotifyScreen
+from admin_subscriptions.spotify_havetoissue_monthly import SpotifyHavetoissueMonthly
+from admin_subscriptions.admin_youtube import AdminYoutubeScreen
+from admin_subscriptions.youtube_havetoissue_monthly import YoutubeHavetoissueMonthly
+
 
 
 class StreamSmartApp(App):
@@ -35,11 +46,22 @@ class StreamSmartApp(App):
         sm.add_widget(AmazonScreen(name='amazon_screen'))
         sm.add_widget(HotstarScreen(name='hotstar_screen'))
         sm.add_widget(SpotifyScreen(name='spotify_screen'))
+        sm.add_widget(YoutubeScreen(name='youtube_screen'))
         sm.add_widget(ForgotPasswordScreen(name='forgot_password'))
         sm.add_widget(AdminNetflixScreen(name='admin_netflix_screen'))
         sm.add_widget(NetflixHavetoissueMonthly(name='netflix_havetoissue_monthly'))
         sm.add_widget(NetflixHavetoissueYearly(name='netflix_havetoissue_yearly'))
         sm.add_widget(AdminAmazonScreen(name='admin_amazon_screen'))
+        sm.add_widget(AmazonHavetoissueMonthly(name='amazon_havetoissue_monthly'))
+        sm.add_widget(AmazonHavetoissueYearly(name='amazon_havetoissue_yearly'))
+        sm.add_widget(AdminHotstarScreen(name='admin_hotstar_screen'))
+        sm.add_widget(HotstarHavetoissueMonthly(name='hotstar_havetoissue_monthly'))
+        sm.add_widget(HotstarHavetoissueYearly(name='hotstar_havetoissue_yearly'))
+        sm.add_widget(AdminSpotifyScreen(name='admin_spotify_screen'))
+        sm.add_widget(SpotifyHavetoissueMonthly(name='spotify_havetoissue_monthly'))
+        sm.add_widget(AdminYoutubeScreen(name='admin_youtube_screen'))
+        sm.add_widget(YoutubeHavetoissueMonthly(name='youtube_havetoissue_monthly'))
+
         return sm
     
     def forgot_password(self):
