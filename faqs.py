@@ -66,4 +66,4 @@ A: StreamSmart helps reduce subscription costs, optimizes the utilization of mul
         self.add_widget(layout)
 
     def go_back(self, *args):
-        self.manager.current = 'dashboard'
+        self.manager.current = 'userdashboard'

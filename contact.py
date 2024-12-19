@@ -45,4 +45,4 @@ class ContactScreen(Screen):
         self.add_widget(layout)
 
     def go_back(self, *args):
-        self.manager.current = 'dashboard'  # This should correctly switch back to the dashboard screen
+        self.manager.current = 'userdashboard'  # This should correctly switch back to the dashboard screen

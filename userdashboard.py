@@ -40,3 +40,4 @@ class UserDashboardScreen(Screen):
                 self.manager.current = 'spotify_screen'
             elif platform == 'YouTube':
                 self.manager.current = 'youtube_screen'
+
